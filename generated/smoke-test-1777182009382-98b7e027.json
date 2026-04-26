@@ -1,0 +1,44 @@
+{
+  "documentId": "smoke-test-1777182009382-98b7e027",
+  "metadata": {
+    "documentId": "smoke-test-1777182009382-98b7e027",
+    "title": "Smoke Test",
+    "subject": "Technology",
+    "style": "formal",
+    "aiProvider": "local-fallback",
+    "usedFallback": true,
+    "generatedAt": "2026-04-26T05:40:09.474Z"
+  },
+  "formattedPreview": "Artificial intelligence helps students prepare clean assignments. It improves structure and readability.\n\nTechnology Overview\n\nArtificial intelligence helps students prepare clean assignments. It improves structure and readability.\n\nThis document provides a structured academic summary based on the submitted content.",
+  "lockedPreview": {
+    "isLocked": false,
+    "visiblePreview": "Artificial intelligence helps students prepare clean assignments. It improves structure and readability.\n\nTechnology Overview\n\nArtificial intelligence helps students prepare clean assignments. It improves structure and readability.\n\nThis document provides a structured academic summary based on the submitted content.",
+    "message": "Preview locking is a placeholder for the future frontend + payment flow."
+  },
+  "structuredContent": {
+    "title": "Smoke Test",
+    "introduction": "Artificial intelligence helps students prepare clean assignments. It improves structure and readability.",
+    "sections": [
+      {
+        "heading": "Technology Overview",
+        "paragraphs": [
+          "Artificial intelligence helps students prepare clean assignments. It improves structure and readability."
+        ],
+        "bulletPoints": []
+      }
+    ],
+    "conclusion": "This document provides a structured academic summary based on the submitted content.",
+    "previewText": "Artificial intelligence helps students prepare clean assignments. It improves structure and readability.\n\nTechnology Overview\n\nArtificial intelligence helps students prepare clean assignments. It improves structure and readability.\n\nThis document provides a structured academic summary based on the submitted content."
+  },
+  "file": {
+    "fileName": "smoke-test-1777182009382-98b7e027.docx",
+    "relativePath": "/generated/smoke-test-1777182009382-98b7e027.docx",
+    "downloadUrl": "http://localhost:5000/generated/smoke-test-1777182009382-98b7e027.docx",
+    "sizeInBytes": 12623,
+    "detailsUrl": "http://localhost:5000/documents/smoke-test-1777182009382-98b7e027",
+    "previewUrl": "http://localhost:5000/documents/smoke-test-1777182009382-98b7e027/preview",
+    "directDownloadUrl": "http://localhost:5000/documents/smoke-test-1777182009382-98b7e027/download",
+    "previewTextPath": "/generated/smoke-test-1777182009382-98b7e027.txt",
+    "recordPath": "/generated/smoke-test-1777182009382-98b7e027.json"
+  }
+}

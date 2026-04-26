@@ -1,0 +1,42 @@
+{
+  "documentId": "the-impact-of-artificial-intelligence-on-education-1776536565632-60a13993",
+  "metadata": {
+    "documentId": "the-impact-of-artificial-intelligence-on-education-1776536565632-60a13993",
+    "title": "The Impact of Artificial Intelligence on Education",
+    "subject": "Computer Science",
+    "style": "formal",
+    "aiProvider": "gemini-reference",
+    "usedFallback": false,
+    "generatedAt": "2026-04-18T18:22:45.721Z"
+  },
+  "formattedPreview": "Introduction Artificial intelligence is fundamentally altering various sectors, with profound implications for how we learn and teach.\n\nKey Concepts Within the educational landscape, AI offers significant advancements. - Personalization - Automation\n\nConclusion The integration of AI is poised to redefine educational paradigms for generations to come.\n\nMain Discussion\n\nThis draft is ready for preview locking, payment integration, and storage workflows.",
+  "lockedPreview": {
+    "isLocked": false,
+    "visiblePreview": "Introduction Artificial intelligence is fundamentally altering various sectors, with profound implications for how we learn and teach.\n\nKey Concepts Within the educational landscape, AI offers significant advancements. - Personalization - Automation\n\nConclusion The integration of AI is poised to redefine educational paradigms for generations to come.\n\nMain Discussion\n\nThis draft is ready for preview locking, payment integration, and storage workflows.",
+    "message": "Preview locking is a placeholder for the future frontend + payment flow."
+  },
+  "structuredContent": {
+    "title": "The Impact of Artificial Intelligence on Education",
+    "introduction": "Introduction Artificial intelligence is fundamentally altering various sectors, with profound implications for how we learn and teach.\n\nKey Concepts Within the educational landscape, AI offers significant advancements. - Personalization - Automation\n\nConclusion The integration of AI is poised to redefine educational paradigms for generations to come.",
+    "sections": [
+      {
+        "heading": "Main Discussion",
+        "paragraphs": [],
+        "bulletPoints": []
+      }
+    ],
+    "conclusion": "This draft is ready for preview locking, payment integration, and storage workflows.",
+    "previewText": "Introduction Artificial intelligence is fundamentally altering various sectors, with profound implications for how we learn and teach.\n\nKey Concepts Within the educational landscape, AI offers significant advancements. - Personalization - Automation\n\nConclusion The integration of AI is poised to redefine educational paradigms for generations to come.\n\nMain Discussion\n\nThis draft is ready for preview locking, payment integration, and storage workflows."
+  },
+  "file": {
+    "fileName": "the-impact-of-artificial-intelligence-on-education-1776536565632-60a13993.docx",
+    "relativePath": "/generated/the-impact-of-artificial-intelligence-on-education-1776536565632-60a13993.docx",
+    "downloadUrl": "http://localhost:5000/generated/the-impact-of-artificial-intelligence-on-education-1776536565632-60a13993.docx",
+    "sizeInBytes": 12843,
+    "detailsUrl": "http://localhost:5000/documents/the-impact-of-artificial-intelligence-on-education-1776536565632-60a13993",
+    "previewUrl": "http://localhost:5000/documents/the-impact-of-artificial-intelligence-on-education-1776536565632-60a13993/preview",
+    "directDownloadUrl": "http://localhost:5000/documents/the-impact-of-artificial-intelligence-on-education-1776536565632-60a13993/download",
+    "previewTextPath": "/generated/the-impact-of-artificial-intelligence-on-education-1776536565632-60a13993.txt",
+    "recordPath": "/generated/the-impact-of-artificial-intelligence-on-education-1776536565632-60a13993.json"
+  }
+}
