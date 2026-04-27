@@ -1,15 +1,17 @@
 const express = require("express");
 const {
-  createPaymentOrder,
+  generateUPIPaymentRequest,
+  verifyUPIPayment,
+  getPaymentStatus,
   getPaymentHealth,
-  verifyPaymentSignature,
-} = require("../controllers/paymentController");
+} = require("../controllers/upiPaymentController");
 
 const router = express.Router();
 
 router.get("/health", getPaymentHealth);
-router.post("/create-order", createPaymentOrder);
-router.post("/verify", verifyPaymentSignature);
+router.post("/upi/generate", generateUPIPaymentRequest);
+router.post("/upi/verify", verifyUPIPayment);
+router.get("/upi/status", getPaymentStatus);
 
 module.exports = router;
 

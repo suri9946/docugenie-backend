@@ -10,12 +10,23 @@ const {
   getTwoPagePreview,
 } = require("../services/documentPlanningService");
 const {
+  generateBookChunked,
+  getTwoPagePreviewFromBook,
+  detectPageCount,
+} = require("../services/bookGenerationService");
+const {
+  parseUploadedDocument,
+  applyDocumentAsTemplate,
+} = require("../services/wordParsingService");
+const {
   saveGeneratedDocumentArtifacts,
 } = require("../services/generatedDocumentService");
 const {
   saveDocumentMetadata,
   storeGeneratedFileReference,
 } = require("../services/supabaseService");
+
+const logger = require("../utils/logger");
 
 const countWords = (text) => text.split(/\s+/).filter(Boolean).length;
 
@@ -79,11 +90,12 @@ const buildSafeFallbackDocument = ({ title, rawText, subject, style, template })
 
 const generateDocument = async (req, res) => {
   try {
-    console.log("[generate] incoming req.body:", req.body);
+    logger.info("[generate] incoming request", { hasFile: Boolean(req.file) });
 
     const { title, rawText, instructions, subject, style } = req.body || {};
 
-    let { referenceText } = req.body || {};
+    let referenceText = req.body?.referenceText || "";
+    let wordDocStructure = null;
 
     if (!rawText || typeof rawText !== "string" || !rawText.trim()) {
       return res.status(400).json({
@@ -93,8 +105,34 @@ const generateDocument = async (req, res) => {
     }
 
     const normalizedRawText = rawText.trim();
+
+    // Parse uploaded reference file (txt, doc, or docx)
     if (req.file && req.file.buffer) {
-      referenceText = req.file.buffer.toString("utf8");
+      logger.info("[generate] parsing uploaded reference file", {
+        filename: req.file.originalname,
+        size: req.file.size,
+      });
+
+      try {
+        const parsedDoc = await parseUploadedDocument(
+          req.file.buffer,
+          req.file.originalname
+        );
+
+        if (parsedDoc.type === "text") {
+          referenceText = parsedDoc.content;
+        }
+
+        wordDocStructure = parsedDoc.structure;
+        logger.info("[generate] reference file parsed successfully", {
+          type: parsedDoc.type,
+        });
+      } catch (parseError) {
+        logger.error("[generate] failed to parse reference file", {
+          message: parseError.message,
+        });
+        // Continue without the reference file
+      }
     }
 
     const appBaseUrl = (
@@ -108,30 +146,55 @@ const generateDocument = async (req, res) => {
       instructions,
       subject,
     });
+    const targetPageCount = detectPageCount({
+      title,
+      rawText: normalizedRawText,
+      instructions,
+    });
 
-    console.log("[generate] before document generation", {
+    logger.info("[generate] document generation mode", {
       bookMode,
+      targetPages: targetPageCount,
       hasReferenceTemplate: template.headings.length > 0,
+      hasWordDocStructure: Boolean(wordDocStructure),
     });
 
     let aiResult;
-    if (bookMode) {
-      aiResult = {
-        provider: "docugenie-book-generator",
-        usedFallback: false,
-        formattedDocument: buildBookDocument(
-          {
-            title,
-            rawText: normalizedRawText,
-            referenceText,
-            instructions,
-            subject,
-            style,
+
+    // Generate book in chunked mode if book mode is detected
+    if (bookMode && targetPageCount) {
+      logger.info("[generate] starting chunked book generation", { targetPages: targetPageCount });
+
+      try {
+        const bookDocument = await generateBookChunked({
+          title,
+          subject,
+          rawText: normalizedRawText,
+          style,
+          instructions,
+          pageCount: targetPageCount,
+          onChapterGenerated: (chapter) => {
+            logger.info("[generate] chapter generated", {
+              chapter: chapter.chapter,
+              title: chapter.title,
+            });
           },
-          template
-        ),
-      };
-    } else {
+        });
+
+        aiResult = {
+          provider: "docugenie-book-generator",
+          usedFallback: false,
+          formattedDocument: bookDocument,
+        };
+      } catch (bookGenError) {
+        logger.error("[generate] book generation failed", { message: bookGenError.message });
+        // Fallback to standard generation
+        bookMode = false;
+      }
+    }
+
+    // Standard generation if not book mode or book generation failed
+    if (!aiResult) {
       try {
         aiResult = await formatDocumentWithAI({
           title,
@@ -142,7 +205,7 @@ const generateDocument = async (req, res) => {
           style,
         });
       } catch (aiError) {
-        console.error("Generate error:", aiError);
+        logger.error("[generate] AI formatting failed", { message: aiError.message });
         aiResult = {
           provider: "safe-local-fallback",
           usedFallback: true,
@@ -157,17 +220,12 @@ const generateDocument = async (req, res) => {
       }
     }
 
-    console.log("[generate] after Gemini response:", {
-      provider: aiResult && aiResult.provider,
-      usedFallback: Boolean(aiResult && aiResult.usedFallback),
-      hasFormattedDocument: Boolean(aiResult && aiResult.formattedDocument),
-    });
-
     if (!aiResult || !aiResult.formattedDocument) {
-      console.error("Generate error:", new Error("AI returned no formatted document."));
+      logger.error("[generate] no formatted document returned");
       return res.status(200).json(buildFallbackResponse(normalizedRawText));
     }
 
+    // Apply reference template if available and not in book mode
     if (!bookMode && (template.headings.length > 0 || template.formatting.headingColor)) {
       aiResult.formattedDocument = applyReferenceTemplate(
         aiResult.formattedDocument,
@@ -175,12 +233,28 @@ const generateDocument = async (req, res) => {
       );
     }
 
-    if (!aiResult.formattedDocument.previewText) {
-      aiResult.formattedDocument.previewText = buildPreviewText(
+    // Apply Word document as template if available
+    if (wordDocStructure) {
+      aiResult.formattedDocument = applyDocumentAsTemplate(
+        { structure: wordDocStructure },
         aiResult.formattedDocument
       );
     }
 
+    // Build preview text
+    if (!aiResult.formattedDocument.previewText) {
+      if (bookMode) {
+        aiResult.formattedDocument.previewText = getTwoPagePreviewFromBook(
+          aiResult.formattedDocument
+        );
+      } else {
+        aiResult.formattedDocument.previewText = buildPreviewText(
+          aiResult.formattedDocument
+        );
+      }
+    }
+
+    // Generate DOCX file
     const fileResult = await generateDocxFile(aiResult.formattedDocument, {
       subject,
       formatting: aiResult.formattedDocument.formatting || template.formatting,
@@ -190,13 +264,13 @@ const generateDocument = async (req, res) => {
     const generatedAt = new Date().toISOString();
     const fullContentText =
       typeof aiResult.formattedDocument.previewText === "string" &&
-      aiResult.formattedDocument.previewText.trim()
+        aiResult.formattedDocument.previewText.trim()
         ? aiResult.formattedDocument.previewText
         : normalizedRawText;
 
-    const words = fullContentText.split(/\s+/).filter(Boolean);
-    const totalWords = words.length;
-    const locked = true;
+    const totalWords = countWords(fullContentText);
+    const estimatedPages = bookMode ? (targetPageCount || 500) : Math.ceil(totalWords / 300);
+    const locked = estimatedPages > 5;
     const preview = getTwoPagePreview(fullContentText);
 
     const metadata = {
@@ -207,19 +281,20 @@ const generateDocument = async (req, res) => {
       aiProvider: aiResult.provider,
       usedFallback: aiResult.usedFallback,
       mode: bookMode ? "book" : "standard",
-      paid: false,
+      paid: !locked,
       templateApplied: template.headings.length > 0,
+      wordDocUsed: Boolean(wordDocStructure),
+      targetPageCount,
       generatedAt,
     };
 
     const fileLinks = {
       fileName: fileResult.fileName,
       relativePath: fileResult.relativePath,
-      downloadUrl: `${appBaseUrl}/documents/${documentId}/download`,
+      downloadUrl: `${appBaseUrl}/download/${documentId}`,
       sizeInBytes: fileResult.sizeInBytes,
       detailsUrl: `${appBaseUrl}/documents/${documentId}`,
-      previewUrl: `${appBaseUrl}/documents/${documentId}/preview`,
-      directDownloadUrl: `${appBaseUrl}/documents/${documentId}/download`,
+      previewUrl: `${appBaseUrl}/preview/${documentId}`,
     };
 
     try {
@@ -230,8 +305,7 @@ const generateDocument = async (req, res) => {
         lockedPreview: {
           isLocked: locked,
           visiblePreview: preview,
-          message:
-            "Preview locking is a placeholder for the future frontend + payment flow.",
+          message: "Full document unlocks after payment verification.",
         },
         structuredContent: aiResult.formattedDocument,
         file: fileLinks,
@@ -250,8 +324,14 @@ const generateDocument = async (req, res) => {
         generatedAt,
       });
     } catch (saveError) {
-      console.error("Generate error:", saveError);
+      logger.error("[generate] failed to save artifacts", { message: saveError.message });
     }
+
+    logger.info("[generate] document generated successfully", {
+      documentId,
+      mode: metadata.mode,
+      totalWords,
+    });
 
     return res.status(200).json({
       success: true,
@@ -266,7 +346,7 @@ const generateDocument = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error("Generate error:", error);
+    logger.error("[generate] unexpected error", { message: error.message });
     const fallbackRawText =
       typeof req.body?.rawText === "string" ? req.body.rawText.trim() : "";
 

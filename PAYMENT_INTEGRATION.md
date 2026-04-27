@@ -55,7 +55,7 @@ POST /payment/verify          → verifyPaymentSignature
 ### 1. Updated .env
 ```
 VITE_API_URL=http://localhost:5000
-VITE_RAZORPAY_KEY=rzp_test_1DP5gbNptzeJ5K
+VITE_RAZORPAY_KEY=
 ```
 
 ### 2. Updated Preview.jsx
