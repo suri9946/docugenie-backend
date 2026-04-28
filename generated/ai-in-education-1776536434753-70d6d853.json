@@ -1,0 +1,46 @@
+{
+  "documentId": "ai-in-education-1776536434753-70d6d853",
+  "metadata": {
+    "documentId": "ai-in-education-1776536434753-70d6d853",
+    "title": "AI in Education",
+    "subject": "Computer Science",
+    "style": "formal",
+    "aiProvider": "gemini",
+    "usedFallback": false,
+    "generatedAt": "2026-04-18T18:20:34.845Z"
+  },
+  "formattedPreview": "Artificial intelligence is profoundly transforming the educational landscape through advancements in personalization and automation.\n\nKey Areas of Transformation\n\nArtificial intelligence (AI) is fundamentally reshaping modern education by introducing innovative approaches to learning and instruction. Its influence is primarily observed in two critical areas: enhanced personalization and increased automation.\n\nPersonalization, facilitated by AI algorithms, allows for tailored learning experiences that adapt to individual student needs, learning styles, and paces. This includes adaptive learning platforms, intelligent tutoring systems, and customized content delivery.\n\nAutomation, on the other hand, streamlines administrative tasks, grading, and content creation, freeing up educators' time to focus on more complex pedagogical activities and student interaction. AI-powered tools can also provide instant feedback and manage learning resources efficiently.\n\nThese transformative capabilities of artificial intelligence hold significant promise for creating more effective, engaging, and equitable educational environments.",
+  "lockedPreview": {
+    "isLocked": false,
+    "visiblePreview": "Artificial intelligence is profoundly transforming the educational landscape through advancements in personalization and automation.\n\nKey Areas of Transformation\n\nArtificial intelligence (AI) is fundamentally reshaping modern education by introducing innovative approaches to learning and instruction. Its influence is primarily observed in two critical areas: enhanced personalization and increased automation.\n\nPersonalization, facilitated by AI algorithms, allows for tailored learning experiences that adapt to individual student needs, learning styles, and paces. This includes adaptive learning platforms, intelligent tutoring systems, and customized content delivery.\n\nAutomation, on the other hand, streamlines administrative tasks, grading, and content creation, freeing up educators' time to focus on more complex pedagogical activities and student interaction. AI-powered tools can also provide instant feedback and manage learning resources efficiently.\n\nThese transformative capabilities of artificial intelligence hold significant promise for creating more effective, engaging, and equitable educational environments.",
+    "message": "Preview locking is a placeholder for the future frontend + payment flow."
+  },
+  "structuredContent": {
+    "title": "AI in Education",
+    "introduction": "Artificial intelligence is profoundly transforming the educational landscape through advancements in personalization and automation.",
+    "sections": [
+      {
+        "heading": "Key Areas of Transformation",
+        "paragraphs": [
+          "Artificial intelligence (AI) is fundamentally reshaping modern education by introducing innovative approaches to learning and instruction. Its influence is primarily observed in two critical areas: enhanced personalization and increased automation.",
+          "Personalization, facilitated by AI algorithms, allows for tailored learning experiences that adapt to individual student needs, learning styles, and paces. This includes adaptive learning platforms, intelligent tutoring systems, and customized content delivery.",
+          "Automation, on the other hand, streamlines administrative tasks, grading, and content creation, freeing up educators' time to focus on more complex pedagogical activities and student interaction. AI-powered tools can also provide instant feedback and manage learning resources efficiently."
+        ],
+        "bulletPoints": []
+      }
+    ],
+    "conclusion": "These transformative capabilities of artificial intelligence hold significant promise for creating more effective, engaging, and equitable educational environments.",
+    "previewText": "Artificial intelligence is profoundly transforming the educational landscape through advancements in personalization and automation.\n\nKey Areas of Transformation\n\nArtificial intelligence (AI) is fundamentally reshaping modern education by introducing innovative approaches to learning and instruction. Its influence is primarily observed in two critical areas: enhanced personalization and increased automation.\n\nPersonalization, facilitated by AI algorithms, allows for tailored learning experiences that adapt to individual student needs, learning styles, and paces. This includes adaptive learning platforms, intelligent tutoring systems, and customized content delivery.\n\nAutomation, on the other hand, streamlines administrative tasks, grading, and content creation, freeing up educators' time to focus on more complex pedagogical activities and student interaction. AI-powered tools can also provide instant feedback and manage learning resources efficiently.\n\nThese transformative capabilities of artificial intelligence hold significant promise for creating more effective, engaging, and equitable educational environments."
+  },
+  "file": {
+    "fileName": "ai-in-education-1776536434753-70d6d853.docx",
+    "relativePath": "/generated/ai-in-education-1776536434753-70d6d853.docx",
+    "downloadUrl": "http://localhost:5000/generated/ai-in-education-1776536434753-70d6d853.docx",
+    "sizeInBytes": 13144,
+    "detailsUrl": "http://localhost:5000/documents/ai-in-education-1776536434753-70d6d853",
+    "previewUrl": "http://localhost:5000/documents/ai-in-education-1776536434753-70d6d853/preview",
+    "directDownloadUrl": "http://localhost:5000/documents/ai-in-education-1776536434753-70d6d853/download",
+    "previewTextPath": "/generated/ai-in-education-1776536434753-70d6d853.txt",
+    "recordPath": "/generated/ai-in-education-1776536434753-70d6d853.json"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "documentId": "docugenie-access-test-1776517060291-aa73fbc7",
+  "metadata": {
+    "documentId": "docugenie-access-test-1776517060291-aa73fbc7",
+    "title": "DocuGenie Access Test",
+    "subject": "Product Engineering",
+    "style": "formal",
+    "aiProvider": "gemini",
+    "usedFallback": false,
+    "generatedAt": "2026-04-18T12:57:40.322Z"
+  },
+  "formattedPreview": "This document outlines key functionalities designed to enhance user access and interaction with generated content within the backend system, focusing on direct inspection and retrieval methods.\n\nBackend Content Access Enhancements\n\nThe primary objective for the backend system is to provide users with a direct and efficient mechanism for inspecting generated content. This approach aims to eliminate dependencies on editor-specific file links, thereby streamlining the user experience and improving overall product usability. By offering direct access, the system reduces potential friction points and enhances user autonomy.\n\nTo achieve these objectives, specific routes will be implemented within the backend architecture, designed to facilitate immediate content interaction and convenient data retrieval.\n\n• A plain text preview route will be established to allow users to directly inspect generated output without requiring external editor applications. • A dedicated download route will be provided, enabling users to conveniently retrieve generated content files.\n\nThese proposed backend enhancements are expected to significantly improve the product's usability and user autonomy by providing direct, reliable, and editor-independent access to generated content. This will ultimately contribute to a more efficient and user-friendly experience.",
+  "lockedPreview": {
+    "isLocked": true,
+    "visiblePreview": "This document outlines key functionalities designed to enhance user access and interaction with generated content within the backend system, focusing on direct inspection and retrieval methods.\n\nBackend Content Access Enhancements\n\nThe primary objective for the backend system is to provide users with a direct and efficient mechanism for inspecting generated content. This approach aims to eliminate dependencies on editor-specific file links, there",
+    "message": "Preview locking is a placeholder for the future frontend + payment flow."
+  },
+  "structuredContent": {
+    "title": "DocuGenie Access Test",
+    "introduction": "This document outlines key functionalities designed to enhance user access and interaction with generated content within the backend system, focusing on direct inspection and retrieval methods.",
+    "sections": [
+      {
+        "heading": "Backend Content Access Enhancements",
+        "paragraphs": [
+          "The primary objective for the backend system is to provide users with a direct and efficient mechanism for inspecting generated content. This approach aims to eliminate dependencies on editor-specific file links, thereby streamlining the user experience and improving overall product usability. By offering direct access, the system reduces potential friction points and enhances user autonomy.",
+          "To achieve these objectives, specific routes will be implemented within the backend architecture, designed to facilitate immediate content interaction and convenient data retrieval."
+        ],
+        "bulletPoints": [
+          "A plain text preview route will be established to allow users to directly inspect generated output without requiring external editor applications.",
+          "A dedicated download route will be provided, enabling users to conveniently retrieve generated content files."
+        ]
+      }
+    ],
+    "conclusion": "These proposed backend enhancements are expected to significantly improve the product's usability and user autonomy by providing direct, reliable, and editor-independent access to generated content. This will ultimately contribute to a more efficient and user-friendly experience.",
+    "previewText": "This document outlines key functionalities designed to enhance user access and interaction with generated content within the backend system, focusing on direct inspection and retrieval methods.\n\nBackend Content Access Enhancements\n\nThe primary objective for the backend system is to provide users with a direct and efficient mechanism for inspecting generated content. This approach aims to eliminate dependencies on editor-specific file links, thereby streamlining the user experience and improving overall product usability. By offering direct access, the system reduces potential friction points and enhances user autonomy.\n\nTo achieve these objectives, specific routes will be implemented within the backend architecture, designed to facilitate immediate content interaction and convenient data retrieval.\n\n• A plain text preview route will be established to allow users to directly inspect generated output without requiring external editor applications. • A dedicated download route will be provided, enabling users to conveniently retrieve generated content files.\n\nThese proposed backend enhancements are expected to significantly improve the product's usability and user autonomy by providing direct, reliable, and editor-independent access to generated content. This will ultimately contribute to a more efficient and user-friendly experience."
+  },
+  "file": {
+    "fileName": "docugenie-access-test-1776517060291-aa73fbc7.docx",
+    "relativePath": "/generated/docugenie-access-test-1776517060291-aa73fbc7.docx",
+    "downloadUrl": "http://localhost:5000/generated/docugenie-access-test-1776517060291-aa73fbc7.docx",
+    "sizeInBytes": 9484,
+    "detailsUrl": "http://localhost:5000/documents/docugenie-access-test-1776517060291-aa73fbc7",
+    "previewUrl": "http://localhost:5000/documents/docugenie-access-test-1776517060291-aa73fbc7/preview",
+    "directDownloadUrl": "http://localhost:5000/documents/docugenie-access-test-1776517060291-aa73fbc7/download",
+    "previewTextPath": "/generated/docugenie-access-test-1776517060291-aa73fbc7.txt",
+    "recordPath": "/generated/docugenie-access-test-1776517060291-aa73fbc7.json"
+  }
+}

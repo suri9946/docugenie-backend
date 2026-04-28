@@ -1,0 +1,2 @@
+﻿Γùç injected env (14) from .env // tip: Γîü auth for agents [www.vestauth.com]
+Error message: TypeError: fetch failed
